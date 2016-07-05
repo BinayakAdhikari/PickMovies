@@ -56,6 +56,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                     page pages = response.body();
 
+                    Log.i("size of arraylist", "onResponse: " + pages.getMovieResults().size());
+
 
                     for (results results : pages.getMovieResults()) {
                         Log.i("Sucess", "onResponse: " + results.getOriginalTitle());
