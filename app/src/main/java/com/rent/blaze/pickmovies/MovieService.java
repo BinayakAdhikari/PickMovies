@@ -1,7 +1,6 @@
 package com.rent.blaze.pickmovies;
 
-import com.rent.blaze.pickmovies.rest.Model.Response.page;
-import com.rent.blaze.pickmovies.rest.Model.Response.results;
+import com.rent.blaze.pickmovies.rest.Model.Response.Pages;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -14,6 +13,6 @@ import retrofit2.http.Query;
 public interface MovieService {
 
     @GET("3/movie/{movie_id}")
-    Call<page> getMoviesInfo(@Path("movie_id") String movie_id, @Query("api_key") String apiKey);
+    Call<Pages> getMoviesInfo(@Path("movie_id") String movie_id, @Query("api_key") String apiKey);
 
 }

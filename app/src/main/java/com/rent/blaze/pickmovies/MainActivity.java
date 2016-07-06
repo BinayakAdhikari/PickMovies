@@ -1,10 +1,6 @@
 package com.rent.blaze.pickmovies;
 
-import android.content.res.Configuration;
-import android.os.PersistableBundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -13,19 +9,13 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
-import android.support.v7.widget.ToolbarWidgetWrapper;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
-import com.rent.blaze.pickmovies.rest.Model.Response.page;
-import com.rent.blaze.pickmovies.rest.Model.Response.results;
+import com.rent.blaze.pickmovies.rest.Model.Response.Pages;
+import com.rent.blaze.pickmovies.rest.Model.Response.Results;
 import com.rent.blaze.pickmovies.rest.RetrofitManager;
 
 import java.util.ArrayList;
@@ -49,18 +39,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         RetrofitManager retrofitManager = null;
 
         retrofitManager = RetrofitManager.getInstance();
-        retrofitManager.getMoviesInfo("upcoming", "9ee4b67c5f201aa49b4344bcd6d83ef3", new Callback<page>() {
+        retrofitManager.getMoviesInfo("upcoming", "9ee4b67c5f201aa49b4344bcd6d83ef3", new Callback<Pages>() {
             @Override
-            public void onResponse(Call<page> call, Response<page> response) {
+            public void onResponse(Call<Pages> call, Response<Pages> response) {
                 if (response.code() == 200) {
 
-                    page pages = response.body();
+                    Pages pages = response.body();
 
-                    Log.i("size of arraylist", "onResponse: " + pages.getMovieResults().size());
+                    Log.i("size of arraylist", "onResponse: " + pages.getPage());
+                    Log.i("size of arraylist", "onResponse: " + pages.getResults().size());
 
 
-                    for (results results : pages.getMovieResults()) {
-                        Log.i("Sucess", "onResponse: " + results.getOriginalTitle());
+                    for (Results results : pages.getResults()) {
+                        Log.i("Sucess", "onResponse: " + results.getOverview()
+                        );
                     }
 
                 } else {
@@ -70,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
 
             @Override
-            public void onFailure(Call<page> call, Throwable t) {
+            public void onFailure(Call<Pages> call, Throwable t) {
                 Log.i("Failure", "onFailure: " + t.getLocalizedMessage());
 
             }
@@ -112,26 +104,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         GridViewAdapter gridViewAdapter = new GridViewAdapter(MainActivity.this, staggeredListContent);
         recyclerView.setAdapter(gridViewAdapter);
-        recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener()
-
-                                            {
-                                                @Override
-                                                public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-                                                    return false;
-                                                }
-
-                                                @Override
-                                                public void onTouchEvent(RecyclerView rv, MotionEvent e) {
-
-                                                }
-
-                                                @Override
-                                                public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-
-                                                }
-                                            }
-
-        );
 
     }
 

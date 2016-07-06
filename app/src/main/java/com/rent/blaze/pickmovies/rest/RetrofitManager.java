@@ -2,8 +2,7 @@ package com.rent.blaze.pickmovies.rest;
 
 import com.rent.blaze.pickmovies.BuildConfig;
 import com.rent.blaze.pickmovies.MovieService;
-import com.rent.blaze.pickmovies.rest.Model.Response.page;
-import com.rent.blaze.pickmovies.rest.Model.Response.results;
+import com.rent.blaze.pickmovies.rest.Model.Response.Pages;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -45,8 +44,8 @@ public class RetrofitManager {
 
     }
 
-    public void getMoviesInfo(String movie_id, String apikey, Callback<page> callback) {
-        Call<page> pageCall = movieService.getMoviesInfo(movie_id, apikey);
+    public void getMoviesInfo(String movie_id, String apikey, Callback<Pages> callback) {
+        Call<Pages> pageCall = movieService.getMoviesInfo(movie_id, apikey);
         pageCall.enqueue(callback);
     }
 }
