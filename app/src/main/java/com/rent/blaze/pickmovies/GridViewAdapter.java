@@ -7,17 +7,19 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
+import com.rent.blaze.pickmovies.rest.Model.Response.Results;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by blaze on 6/21/16.
  */
 public class GridViewAdapter extends RecyclerView.Adapter<MovieViewHolder> {
-    private List<MovieObjects> movieList;
+    private ArrayList<Results> movieList;
     private Context context;
 
-    public GridViewAdapter(Context context,List<MovieObjects> movieList) {
+    public GridViewAdapter(Context context, ArrayList<Results> movieList) {
         this.movieList = movieList;
         this.context = context;
     }
@@ -31,8 +33,15 @@ public class GridViewAdapter extends RecyclerView.Adapter<MovieViewHolder> {
 
     @Override
     public void onBindViewHolder(MovieViewHolder holder, int position) {
-        holder.txtMovieName.setText(movieList.get(position).getName());
-        holder.imgMovieCover.setImageResource(movieList.get(position).getPhoto());
+        holder.txtMovieName.setText(movieList.get(position).getOriginalTitle());
+        Glide.with(context)
+                .load("http://image.tmdb.org/t/p/w185//"+movieList.get(position).getPosterPath())
+                .placeholder(R.drawable.loadingspinner)
+                .error(R.drawable.two)
+                .into(holder.imgMovieCover);
+
+
+
 
     }
 

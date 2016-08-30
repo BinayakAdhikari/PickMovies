@@ -14,8 +14,21 @@
         android:layout_width="wrap_content"
         android:layout_height="250dp"
         android:layout_below="@+id/toolbar"
-        android:maxHeight="250dp"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/four" />
+        android:maxHeight="250dp" />
+
+    <TextView
+        android:id="@+id/movie_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/specificimage"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/movie_name" />
 
 </RelativeLayout>

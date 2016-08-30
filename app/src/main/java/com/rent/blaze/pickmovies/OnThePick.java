@@ -76,7 +76,7 @@ public class OnThePick extends AppCompatActivity
         List<CategoryObjects> list = new ArrayList<>();
         list.add(new CategoryObjects("Latest Movie", R.drawable.latestmovie));
         list.add(new CategoryObjects("Top Rated", R.drawable.toprated));
-        list.add(new CategoryObjects("All Movies", R.drawable.allmovies));
+        list.add(new CategoryObjects("Popular Movies", R.drawable.allmovies));
         list.add(new CategoryObjects("Comming Up", R.drawable.cominup));
 
 

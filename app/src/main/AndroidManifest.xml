@@ -30,7 +30,10 @@
             android:name=".OnThePick"
             android:label="@string/title_activity_on_the_pick"
             android:theme="@style/AppTheme" />
-        <activity android:name=".MovieDetails"></activity>
+        <activity android:name=".MovieDetails" />
+        <activity android:name=".PopularMovies" />
+        <activity android:name=".NowPlayingMovies" />
+        <activity android:name=".TopRated" />
     </application>
 
 </manifest>

@@ -1,13 +1,16 @@
 package com.rent.blaze.pickmovies.rest.Model.Response;
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 
-public class Results {
+public class Results implements Parcelable{
 
     @SerializedName("poster_path")
     @Expose
@@ -51,6 +54,28 @@ public class Results {
     @SerializedName("vote_average")
     @Expose
     private Double voteAverage;
+
+    protected Results(Parcel in) {
+        posterPath = in.readString();
+        overview = in.readString();
+        releaseDate = in.readString();
+        originalTitle = in.readString();
+        originalLanguage = in.readString();
+        title = in.readString();
+        backdropPath = in.readString();
+    }
+
+    public static final Creator<Results> CREATOR = new Creator<Results>() {
+        @Override
+        public Results createFromParcel(Parcel in) {
+            return new Results(in);
+        }
+
+        @Override
+        public Results[] newArray(int size) {
+            return new Results[size];
+        }
+    };
 
     /**
      *
@@ -201,9 +226,7 @@ public class Results {
      * @return
      * The title
      */
-    public String getTitle() {
-        return title;
-    }
+
 
     /**
      *
@@ -304,4 +327,19 @@ public class Results {
         this.voteAverage = voteAverage;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(posterPath);
+        dest.writeString(overview);
+        dest.writeString(releaseDate);
+        dest.writeString(originalTitle);
+        dest.writeString(originalLanguage);
+        dest.writeString(title);
+        dest.writeString(backdropPath);
+    }
 }

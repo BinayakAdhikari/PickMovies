@@ -1,18 +1,37 @@
 package com.rent.blaze.pickmovies.rest.Model.Response;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Pages {
+public class Pages implements Parcelable{
 
     @SerializedName("page")
     @Expose
     private Integer page;
     @SerializedName("results")
     @Expose
-    private List<Results> results = new ArrayList<Results>();
+    private ArrayList<Results> results = new ArrayList<Results>();
+
+    protected Pages(Parcel in) {
+        results = in.createTypedArrayList(Results.CREATOR);
+    }
+
+    public static final Creator<Pages> CREATOR = new Creator<Pages>() {
+        @Override
+        public Pages createFromParcel(Parcel in) {
+            return new Pages(in);
+        }
+
+        @Override
+        public Pages[] newArray(int size) {
+            return new Pages[size];
+        }
+    };
 
     /**
      *
@@ -37,7 +56,7 @@ public class Pages {
      * @return
      * The Results
      */
-    public List<Results> getResults() {
+    public ArrayList<Results> getResults() {
         return results;
     }
 
@@ -46,8 +65,17 @@ public class Pages {
      * @param results
      * The Results
      */
-    public void setResults(List<Results> results) {
+    public void setResults(ArrayList<Results> results) {
         this.results = results;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeTypedList(results);
+    }
 }
