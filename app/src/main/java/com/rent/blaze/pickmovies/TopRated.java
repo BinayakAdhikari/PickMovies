@@ -71,7 +71,6 @@ public class TopRated extends AppCompatActivity implements NavigationView.OnNavi
 
         recyclerView.setLayoutManager(gridLayoutManager);
 
-        //List<MovieObjects> staggeredListContent = getMovieItem();
 
         getMovieList();
 
@@ -144,32 +143,6 @@ public class TopRated extends AppCompatActivity implements NavigationView.OnNavi
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
-    /**private List<MovieObjects> getMovieItem() {
-     List<MovieObjects> list = new ArrayList<>();
-     list.add(new MovieObjects("one", R.drawable.one));
-     list.add(new MovieObjects("one", R.drawable.two));
-     list.add(new MovieObjects("one", R.drawable.three));
-     list.add(new MovieObjects("one", R.drawable.four));
-     list.add(new MovieObjects("one", R.drawable.one));
-     list.add(new MovieObjects("one", R.drawable.five));
-     list.add(new MovieObjects("one", R.drawable.six));
-     list.add(new MovieObjects("one", R.drawable.seven));
-     list.add(new MovieObjects("one", R.drawable.eight));
-     list.add(new MovieObjects("one", R.drawable.nine));
-     list.add(new MovieObjects("one", R.drawable.ten));
-     list.add(new MovieObjects("one", R.drawable.eleven));
-     list.add(new MovieObjects("one", R.drawable.twelve));
-     list.add(new MovieObjects("one", R.drawable.thirdteen));
-     list.add(new MovieObjects("one", R.drawable.fourteen));
-     list.add(new MovieObjects("one", R.drawable.fivteen));
-     list.add(new MovieObjects("one", R.drawable.sixtteen));
-     list.add(new MovieObjects("one", R.drawable.seventeen));
-     list.add(new MovieObjects("one", R.drawable.eighteen));
-     list.add(new MovieObjects("one", R.drawable.ninteen));
-     list.add(new MovieObjects("one", R.drawable.twenty));
-     return (list);
-     **/
 
 }
 
