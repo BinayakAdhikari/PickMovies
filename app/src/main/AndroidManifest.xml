@@ -12,7 +12,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MoviesActivities.UpcomingMovies">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,9 +31,9 @@
             android:label="@string/title_activity_on_the_pick"
             android:theme="@style/AppTheme" />
         <activity android:name=".MovieDetails" />
-        <activity android:name=".PopularMovies" />
-        <activity android:name=".NowPlayingMovies" />
-        <activity android:name=".TopRated" />
+        <activity android:name=".MoviesActivities.PopularMovies" />
+        <activity android:name=".MoviesActivities.NowPlayingMovies" />
+        <activity android:name=".MoviesActivities.TopRatedMovies" />
     </application>
 
 </manifest>

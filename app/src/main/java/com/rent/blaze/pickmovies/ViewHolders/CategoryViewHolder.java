@@ -1,11 +1,16 @@
-package com.rent.blaze.pickmovies;
+package com.rent.blaze.pickmovies.ViewHolders;
 
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
+
+import com.rent.blaze.pickmovies.MoviesActivities.UpcomingMovies;
+import com.rent.blaze.pickmovies.MoviesActivities.NowPlayingMovies;
+import com.rent.blaze.pickmovies.MoviesActivities.PopularMovies;
+import com.rent.blaze.pickmovies.R;
+import com.rent.blaze.pickmovies.MoviesActivities.TopRatedMovies;
 
 /**
  * Created by blaze on 6/28/16.
@@ -28,11 +33,11 @@ public class CategoryViewHolder extends RecyclerView.ViewHolder implements View.
         if (getAdapterPosition() == 0) {
             intent = new Intent(v.getContext(), NowPlayingMovies.class);
         } else if (getAdapterPosition() == 1) {
-            intent = new Intent(v.getContext(), TopRated.class);
+            intent = new Intent(v.getContext(), TopRatedMovies.class);
         } else if (getAdapterPosition() == 2) {
             intent = new Intent(v.getContext(), PopularMovies.class);
         } else {
-            intent = new Intent(v.getContext(), MainActivity.class);
+            intent = new Intent(v.getContext(), UpcomingMovies.class);
         }
         v.getContext().startActivity(intent);
 

@@ -1,4 +1,4 @@
-package com.rent.blaze.pickmovies;
+package com.rent.blaze.pickmovies.Objects;
 
 import com.rent.blaze.pickmovies.rest.Model.Response.Results;
 

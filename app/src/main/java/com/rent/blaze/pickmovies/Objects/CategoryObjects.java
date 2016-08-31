@@ -1,4 +1,4 @@
-package com.rent.blaze.pickmovies;
+package com.rent.blaze.pickmovies.Objects;
 
 /**
  * Created by blaze on 6/28/16.

@@ -1,11 +1,11 @@
-package com.rent.blaze.pickmovies;
+package com.rent.blaze.pickmovies.MoviesActivities;
 
+import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,9 +14,13 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+
+import com.rent.blaze.pickmovies.MovieDetails;
+import com.rent.blaze.pickmovies.R;
+import com.rent.blaze.pickmovies.Adapters.GridViewAdapter;
 import com.rent.blaze.pickmovies.rest.Model.Response.Pages;
 import com.rent.blaze.pickmovies.rest.Model.Response.Results;
-import com.rent.blaze.pickmovies.rest.RetrofitManager;
+import com.rent.blaze.pickmovies.rest.Service.RetrofitManager;
 
 import java.util.ArrayList;
 
@@ -24,18 +28,20 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+/**
+ * Created by blaze on 8/30/16.
+ */
+public class TopRatedMovies extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
     private GridLayoutManager gridLayoutManager;
     private GridViewAdapter gridViewAdapter;
-    private ArrayList<Results> upcomingMovieList = new ArrayList<>();
+    private ArrayList<Results> TopRated = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
@@ -69,9 +75,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         recyclerView.setLayoutManager(gridLayoutManager);
 
+
         getMovieList();
 
-        gridViewAdapter = new GridViewAdapter(MainActivity.this, upcomingMovieList);
+        gridViewAdapter = new GridViewAdapter(TopRatedMovies.this, TopRated);
         recyclerView.setAdapter(gridViewAdapter);
 
     }
@@ -79,13 +86,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void getMovieList() {
         RetrofitManager retrofitManager = null;
         retrofitManager = RetrofitManager.getInstance();
-        retrofitManager.getMoviesInfo("upcoming", "9ee4b67c5f201aa49b4344bcd6d83ef3", new Callback<Pages>() {
+        retrofitManager.getMoviesInfo("top_rated", "9ee4b67c5f201aa49b4344bcd6d83ef3", new Callback<Pages>() {
             @Override
             public void onResponse(Call<Pages> call, Response<Pages> response) {
                 if (response.code() == 200) {
 
-                    upcomingMovieList.addAll(response.body().getResults());
+                    TopRated.addAll(response.body().getResults());
                     gridViewAdapter.notifyDataSetChanged();
+                    gridViewAdapter.setClickListener(new GridViewAdapter.MovieItemClickListener() {
+                        @Override
+                        public void onClick(Results result) {
+                            startActivity(MovieDetails.getLaunchIntent(TopRatedMovies.this, result));
+                        }
+                    });
                 }
 
             }
@@ -142,5 +155,4 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 }
-
 

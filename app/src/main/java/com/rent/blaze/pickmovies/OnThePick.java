@@ -17,7 +17,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.rey.material.widget.Button;
+import com.rent.blaze.pickmovies.Objects.CategoryObjects;
+import com.rent.blaze.pickmovies.Adapters.CategoryAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -109,6 +110,9 @@ public class OnThePick extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.categories) {
+
+            Intent ShowCategories = new Intent(OnThePick.this, OnThePick.class);
+            startActivity(ShowCategories);
             // Handle the categories
         } else if (id == R.id.search) {
 
@@ -119,6 +123,8 @@ public class OnThePick extends AppCompatActivity
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.exit) {
+
+            System.exit(0);
 
         }
 

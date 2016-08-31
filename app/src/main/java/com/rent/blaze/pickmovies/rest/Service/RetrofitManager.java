@@ -1,7 +1,7 @@
-package com.rent.blaze.pickmovies.rest;
+package com.rent.blaze.pickmovies.rest.Service;
 
 import com.rent.blaze.pickmovies.BuildConfig;
-import com.rent.blaze.pickmovies.MovieService;
+import com.rent.blaze.pickmovies.Interfaces.MovieService;
 import com.rent.blaze.pickmovies.rest.Model.Response.Pages;
 
 import okhttp3.OkHttpClient;

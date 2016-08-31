@@ -1,4 +1,4 @@
-package com.rent.blaze.pickmovies;
+package com.rent.blaze.pickmovies.Interfaces;
 
 import com.rent.blaze.pickmovies.rest.Model.Response.Pages;
 

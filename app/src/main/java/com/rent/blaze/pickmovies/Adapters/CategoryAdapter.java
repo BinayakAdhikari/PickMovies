@@ -1,4 +1,4 @@
-package com.rent.blaze.pickmovies;
+package com.rent.blaze.pickmovies.Adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -6,9 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.List;
+import com.rent.blaze.pickmovies.Objects.CategoryObjects;
+import com.rent.blaze.pickmovies.ViewHolders.CategoryViewHolder;
+import com.rent.blaze.pickmovies.R;
 
-import retrofit2.Call;
+import java.util.List;
 
 /**
  * Created by blaze on 6/28/16.

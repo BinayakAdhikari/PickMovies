@@ -1,4 +1,4 @@
-package com.rent.blaze.pickmovies;
+package com.rent.blaze.pickmovies.MoviesActivities;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -13,10 +13,12 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-
+import com.rent.blaze.pickmovies.MovieDetails;
+import com.rent.blaze.pickmovies.R;
+import com.rent.blaze.pickmovies.Adapters.GridViewAdapter;
 import com.rent.blaze.pickmovies.rest.Model.Response.Pages;
 import com.rent.blaze.pickmovies.rest.Model.Response.Results;
-import com.rent.blaze.pickmovies.rest.RetrofitManager;
+import com.rent.blaze.pickmovies.rest.Service.RetrofitManager;
 
 import java.util.ArrayList;
 
@@ -27,12 +29,12 @@ import retrofit2.Response;
 /**
  * Created by blaze on 8/30/16.
  */
-public class PopularMovies extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class NowPlayingMovies extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
     private GridLayoutManager gridLayoutManager;
     private GridViewAdapter gridViewAdapter;
-    private ArrayList<Results> Popular = new ArrayList<>();
+    private ArrayList<Results> nowPlaying = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,10 +73,9 @@ public class PopularMovies extends AppCompatActivity implements NavigationView.O
 
         recyclerView.setLayoutManager(gridLayoutManager);
 
-
         getMovieList();
 
-        gridViewAdapter = new GridViewAdapter(PopularMovies.this, Popular);
+        gridViewAdapter = new GridViewAdapter(NowPlayingMovies.this, nowPlaying);
         recyclerView.setAdapter(gridViewAdapter);
 
     }
@@ -82,13 +83,19 @@ public class PopularMovies extends AppCompatActivity implements NavigationView.O
     private void getMovieList() {
         RetrofitManager retrofitManager = null;
         retrofitManager = RetrofitManager.getInstance();
-        retrofitManager.getMoviesInfo("popular", "9ee4b67c5f201aa49b4344bcd6d83ef3", new Callback<Pages>() {
+        retrofitManager.getMoviesInfo("now_playing", "9ee4b67c5f201aa49b4344bcd6d83ef3", new Callback<Pages>() {
             @Override
             public void onResponse(Call<Pages> call, Response<Pages> response) {
                 if (response.code() == 200) {
 
-                    Popular.addAll(response.body().getResults());
+                    nowPlaying.addAll(response.body().getResults());
                     gridViewAdapter.notifyDataSetChanged();
+                    gridViewAdapter.setClickListener(new GridViewAdapter.MovieItemClickListener() {
+                        @Override
+                        public void onClick(Results result) {
+                            startActivity(MovieDetails.getLaunchIntent(NowPlayingMovies.this, result));
+                        }
+                    });
                 }
 
             }
@@ -143,7 +150,6 @@ public class PopularMovies extends AppCompatActivity implements NavigationView.O
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
 
 }
 
